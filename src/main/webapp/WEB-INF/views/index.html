@@ -27,11 +27,19 @@
             <th>Last Name</th>
         </thead>
         <tbody>
-            <tr th:each="user : ${users}">
-                <td><span th:text="${user.value.firstName}"/></td>
-                <td><span th:text="${user.value.lastName}"/></td>
+            <tr th:if="${user != null}">
+                <td><span th:text="${user.firstName}"/></td>
+                <td><span th:text="${user.lastName}"/></td>
             </tr>
+            <form th:action="@{delete}" method="post">
+                <tr th:unless="${user==null}" th:each="user : ${users}">
+                    <td><span th:text="${user.value.firstName}"/></td>
+                    <td><span th:text="${user.value.lastName}"/></td>
+                    <td><button th:type="submit" class="btn btn-success" th:name="deleteButton" th:value="${user.value.id}">Delete</button> </td>
+                </tr>
+            </form>
         </tbody>
+
     </table>
 </div>
 
