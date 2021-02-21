@@ -37,4 +37,9 @@ public class UserDao {
         user.setId(id);
         users.put(user.getId(), user);
     }
+
+    public void editUser(User user) {
+        System.out.println(user.getId());
+        users.put(user.getId(), user);
+    }
 }

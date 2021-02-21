@@ -20,11 +20,12 @@
 </head>
 <body>
     <div class="container">
-        <form th:action="${user.id} == null ? @{save} : @{edit}" th:object="${user}" method="post">
+        <form th:action="${user.id} == null ? @{save} : @{edited}" th:object="${user}" method="post">
             <div class="form-group">
-                <input class="form-control" placeholder="Provide First Name" th:field="${user.firstName}"/>
+                <input type="hidden" th:field="${user.id}"/>
+                <input class="form-control" placeholder="Provide First Name" th:field="${user.firstName}" />
                 <br/>
-                <input class="form-control" placeholder="Provide Last Name" th:field="${user.lastName}"/>
+                <input class="form-control" placeholder="Provide Last Name" th:field="${user.lastName}" />
                 <br/>
                 <input type="submit" class="btn btn-success" id="submitButton" th:value="Save">
             </div>
