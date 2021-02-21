@@ -17,3 +17,6 @@ spring:
       charset: UTF-8
       enabled: true
 
+file:
+  encoding: UTF-8
+

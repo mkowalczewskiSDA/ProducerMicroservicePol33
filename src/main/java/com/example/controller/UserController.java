@@ -5,7 +5,10 @@ import com.example.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Controller
 public class UserController {
@@ -51,11 +54,14 @@ public class UserController {
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String postAction(User user){
-        System.out.println("Added User: " + user.getFirstName() + " " + user.getLastName());
-        userDao.addUser(user);
-        return "index";
-
+    public String postAction(@Valid User user, BindingResult bindingResult){
+        if (bindingResult.hasErrors()) {
+            return "post";
+        } else {
+            System.out.println("Added User: " + user.getFirstName() + " " + user.getLastName());
+            userDao.addUser(user);
+            return "index";
+        }
     }
 
     @RequestMapping(value = "/edited", method = RequestMethod.POST)
