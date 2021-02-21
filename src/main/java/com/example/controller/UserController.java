@@ -1,6 +1,7 @@
 package com.example.controller;
 
 import com.example.dao.UserDao;
+import com.example.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,5 +38,17 @@ public class UserController {
     public String deleteUser(@RequestParam("deleteButton") int id, Model model) {
         userDao.removeUserById(id);
         return "redirect:main";
+    }
+
+    @PostMapping("/save")
+    public String saveAction(User user) {
+        userDao.addUser(user);
+        return "redirect:main";
+    }
+
+    @RequestMapping("/post")
+    public String postPage(Model model) {
+        model.addAttribute("user",new User());
+        return "post";
     }
 }
