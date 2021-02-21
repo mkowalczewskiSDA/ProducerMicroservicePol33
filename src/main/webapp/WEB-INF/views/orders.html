@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>Spring MVC CRUD</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.3.5/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen" />
+
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+            th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+
+    <link href="../static/css/spring-core.css"
+          th:href="@{css/spring-core.css}" rel="stylesheet" media="screen"/>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+</head>
+<body>
+
+<div class="container">
+    <table class="table">
+        <thead>
+            <th><span th:text="#{label.order.id}" /></th>
+            <th><span th:text="#{label.order.price}" /></th>
+            <th><span th:text="#{label.order.title}" /></th>
+            <th><span th:text="#{label.order.fullName}" /></th>
+        </thead>
+        <tbody>
+        <tr th:each="order : ${orders}" th:object="${order.value}">
+            <td><span th:text="*{id}">Id</span></td>
+            <td><span th:text="*{title}">Title</span></td>
+            <td><span th:text="*{#numbers.formatDecimal(price, 1, 'DEFAULT', 2, 'DEFAULT')}">Price</span></td>
+            <td><span th:text="*{user.firstName} +' '+*{user.lastName}">Price</span></td>
+        </tr>
+        </tbody>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
