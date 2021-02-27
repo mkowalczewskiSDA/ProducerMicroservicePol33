@@ -7,11 +7,24 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.annotation.RequestScope;
+import org.springframework.web.context.annotation.SessionScope;
 
+import javax.annotation.PostConstruct;
 import javax.validation.Valid;
 
 @Controller
+//@RequestScope
+@SessionScope
 public class UserController {
+
+    private int test = 0;
+
+    @PostConstruct
+    public void init() {
+        System.out.println("Bean has been initialized");
+        System.out.println(test);
+    }
 
     @Autowired
     UserDao userDao;
@@ -50,6 +63,8 @@ public class UserController {
     @PostMapping("/edit")
     public String editUser(@RequestParam("editButton") int id, Model model) {
         model.addAttribute("user", userDao.getUserById(id));
+        test++;
+        System.out.println(test);
         return "post";
     }
 
