@@ -25,8 +25,9 @@ class TaskControllerSpec extends Specification {
     def setup() {
         userService.create(new UserDTO("Stefan", "Nowak", "sn@wp.pl"))
         userService.create(new UserDTO("Jan", "Kowalski", "jk@wp.pl"))
-        taskService.create(new TaskDTO())
-
+        taskService.create(new TaskDTO("test1", true))
+        taskService.create(new TaskDTO("test2", false, 20, new UserDTO(2, "Jan", "Kowalski", "jk@wp.pl")))
+        taskService.create(new TaskDTO("test3", false, 50, new UserDTO(1, "Stefan","Nowak", "sn@wp.pl")))
     }
 
 }
