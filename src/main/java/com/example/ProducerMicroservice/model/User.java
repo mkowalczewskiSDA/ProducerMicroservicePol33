@@ -1,7 +1,9 @@
 package com.example.ProducerMicroservice.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -12,6 +14,8 @@ import java.util.Set;
 @Table
 @Data
 @NoArgsConstructor
+@ToString(exclude = "tasks")
+@EqualsAndHashCode(exclude = "tasks")
 public class User {
 
     @Id

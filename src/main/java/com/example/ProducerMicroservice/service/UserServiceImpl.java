@@ -3,6 +3,7 @@ package com.example.ProducerMicroservice.service;
 import com.example.ProducerMicroservice.exceptions.UserNotFoundException;
 import com.example.ProducerMicroservice.model.User;
 import com.example.ProducerMicroservice.model.dto.UserDTO;
+import com.example.ProducerMicroservice.repository.TaskRepository;
 import com.example.ProducerMicroservice.repository.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,8 @@ public class UserServiceImpl implements UserService{
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private TaskRepository taskRepository;
     @Autowired
     private ModelMapper modelMapper;
 
@@ -58,6 +61,8 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public void delete(int id) {
+        User user = getUserEntity(id);
+        taskRepository.deleteAll(user.getTasks());
         userRepository.deleteById(id);
     }
 
