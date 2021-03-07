@@ -1,6 +1,8 @@
 package com.example.ProducerMicroservice
 
+import com.example.ProducerMicroservice.model.dto.TaskDTO
 import com.example.ProducerMicroservice.model.dto.UserDTO
+import com.example.ProducerMicroservice.service.TaskService
 import com.example.ProducerMicroservice.service.UserService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
@@ -16,11 +18,15 @@ import spock.lang.Specification
 class TaskControllerSpec extends Specification {
 
     @Autowired
-    UserService userService;
+    UserService userService
+    @Autowired
+    TaskService taskService
 
     def setup() {
         userService.create(new UserDTO("Stefan", "Nowak", "sn@wp.pl"))
         userService.create(new UserDTO("Jan", "Kowalski", "jk@wp.pl"))
+        taskService.create(new TaskDTO())
+
     }
 
 }

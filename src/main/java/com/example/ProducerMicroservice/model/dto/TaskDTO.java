@@ -15,4 +15,15 @@ public class TaskDTO {
     private Integer completionPercentage;
     public UserDTO user;
 
+    public TaskDTO(String description, boolean completed, Integer completionPercentage, UserDTO user) {
+        this.description = description;
+        this.completed = completed;
+        this.completionPercentage = completionPercentage;
+        this.user = user;
+    }
+
+    public TaskDTO(String description, boolean completed) {
+        this.description = description;
+        this.completed = completed;
+    }
 }
