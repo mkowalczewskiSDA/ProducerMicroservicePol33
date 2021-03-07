@@ -40,4 +40,23 @@ public class UserServiceImpl implements UserService{
         userRepository.save(modelMapper.map(userDTO, User.class));
         return userDTO;
     }
+
+    @Override
+    public UserDTO update(int id, UserDTO userDTO) {
+        User user = getUserEntity(id);
+        if (userDTO.getFirstName() != null) {
+            user.setFirstName(userDTO.getFirstName());
+        }
+        if (userDTO.getLastName() != null) {
+            user.setLastName(userDTO.getLastName());
+        }
+        if (userDTO.getEmail() != null) {
+            user.setEmail(userDTO.getEmail());
+        }
+        return modelMapper.map(userRepository.save(user), UserDTO.class); //Jesteśmy konsekwentni w zwracaniu DTO - REST powinien zwrócić nam ciało klasy ktorą dodaliśmy
+    }
+
+    private User getUserEntity(int id) {
+        return userRepository.findById(id).orElseThrow(UserNotFoundException::new);
+    }
 }
