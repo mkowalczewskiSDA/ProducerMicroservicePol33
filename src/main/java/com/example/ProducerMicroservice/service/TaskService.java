@@ -10,7 +10,7 @@ public interface TaskService {
     TaskDTO create(TaskDTO taskDTO);
     TaskDTO update(int id, TaskDTO taskDTO);
     void delete(int id);
-    TaskDTO findById();
+    TaskDTO findById(int id);
     TaskDTO findFirst();
     TaskDTO findLast();
 }

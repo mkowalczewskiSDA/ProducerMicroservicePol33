@@ -66,7 +66,7 @@ public class UserServiceImpl implements UserService{
         userRepository.deleteById(id);
     }
 
-    private User getUserEntity(int id) {
+    public User getUserEntity(int id) {
         return userRepository.findById(id).orElseThrow(UserNotFoundException::new);
     }
 }
