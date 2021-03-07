@@ -2,6 +2,7 @@ package com.example.ProducerMicroservice.controller;
 
 import com.example.ProducerMicroservice.model.dto.UserDTO;
 import com.example.ProducerMicroservice.service.UserService;
+import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,6 +32,11 @@ public class UserController {
     @PostMapping("/{id}")
     public UserDTO update(@PathVariable int id, @RequestBody UserDTO userDTO) {
         return userService.update(id,userDTO);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable int id) {
+        userService.delete(id);
     }
 
 }

@@ -10,4 +10,5 @@ public interface UserService {
     UserDTO findById(int id);
     UserDTO create(UserDTO userDTO);
     UserDTO update(int id, UserDTO userDTO);
+    void delete(int id);
 }

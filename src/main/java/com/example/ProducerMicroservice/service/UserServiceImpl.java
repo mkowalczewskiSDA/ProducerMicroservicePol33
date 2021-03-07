@@ -56,6 +56,11 @@ public class UserServiceImpl implements UserService{
         return modelMapper.map(userRepository.save(user), UserDTO.class); //Jesteśmy konsekwentni w zwracaniu DTO - REST powinien zwrócić nam ciało klasy ktorą dodaliśmy
     }
 
+    @Override
+    public void delete(int id) {
+        userRepository.deleteById(id);
+    }
+
     private User getUserEntity(int id) {
         return userRepository.findById(id).orElseThrow(UserNotFoundException::new);
     }
