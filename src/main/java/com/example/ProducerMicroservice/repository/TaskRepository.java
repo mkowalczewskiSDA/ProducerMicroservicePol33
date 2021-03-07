@@ -5,8 +5,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface TaskRepository extends JpaRepository<Task, Integer> {
 
-    Task findFirstByIdOrderByIdAsc();
+    Task findFirstByOrderByIdAsc();
 
-    Task findFirstByIdOrderByIdDesc();
+    Task findFirstByOrderByIdDesc();
 
 }

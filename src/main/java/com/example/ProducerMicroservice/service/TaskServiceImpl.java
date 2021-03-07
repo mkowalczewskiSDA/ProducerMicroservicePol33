@@ -67,12 +67,12 @@ public class TaskServiceImpl implements TaskService{
 
     @Override
     public TaskDTO findFirst() {
-        return modelMapper.map(taskRepository.findFirstByIdOrderByIdAsc(), TaskDTO.class);
+        return modelMapper.map(taskRepository.findFirstByOrderByIdAsc(), TaskDTO.class);
     }
 
     @Override
     public TaskDTO findLast() {
-        return modelMapper.map(taskRepository.findFirstByIdOrderByIdDesc(), TaskDTO.class);
+        return modelMapper.map(taskRepository.findFirstByOrderByIdDesc(), TaskDTO.class);
     }
 
     private Task getTaskEntity(int id) {
