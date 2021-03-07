@@ -1,6 +1,7 @@
 package com.example.ProducerMicroservice.service;
 
 import com.example.ProducerMicroservice.exceptions.UserNotFoundException;
+import com.example.ProducerMicroservice.model.User;
 import com.example.ProducerMicroservice.model.dto.UserDTO;
 import com.example.ProducerMicroservice.repository.UserRepository;
 import org.modelmapper.ModelMapper;
@@ -32,5 +33,11 @@ public class UserServiceImpl implements UserService{
                         .orElseThrow(UserNotFoundException::new), UserDTO.class);
 
 
+    }
+
+    @Override
+    public UserDTO create(UserDTO userDTO) {
+        userRepository.save(modelMapper.map(userDTO, User.class));
+        return userDTO;
     }
 }

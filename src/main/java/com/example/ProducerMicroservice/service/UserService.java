@@ -8,4 +8,5 @@ public interface UserService {
 
     List<UserDTO> findAll();
     UserDTO findById(int id);
+    UserDTO create(UserDTO userDTO);
 }

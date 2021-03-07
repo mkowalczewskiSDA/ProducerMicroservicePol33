@@ -3,11 +3,9 @@ package com.example.ProducerMicroservice.controller;
 import com.example.ProducerMicroservice.model.dto.UserDTO;
 import com.example.ProducerMicroservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -23,6 +21,11 @@ public class UserController {
     @GetMapping("/{id}")
     public UserDTO findById(@PathVariable int id) {
         return userService.findById(id);
+    }
+
+    @PostMapping
+    public UserDTO create(@Valid @RequestBody UserDTO userDTO) {
+        return userService.create(userDTO);
     }
 
 }
