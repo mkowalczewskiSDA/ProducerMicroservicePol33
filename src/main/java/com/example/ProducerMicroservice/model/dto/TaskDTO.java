@@ -26,4 +26,10 @@ public class TaskDTO {
         this.description = description;
         this.completed = completed;
     }
+
+    public TaskDTO(Integer id, String description, boolean completed) {
+        this.id = id;
+        this.description = description;
+        this.completed = completed;
+    }
 }
