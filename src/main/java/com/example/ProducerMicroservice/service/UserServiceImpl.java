@@ -1,5 +1,6 @@
 package com.example.ProducerMicroservice.service;
 
+import com.example.ProducerMicroservice.exceptions.UserNotFoundException;
 import com.example.ProducerMicroservice.model.dto.UserDTO;
 import com.example.ProducerMicroservice.repository.UserRepository;
 import org.modelmapper.ModelMapper;
@@ -22,5 +23,14 @@ public class UserServiceImpl implements UserService{
         return userRepository.findAll().stream()
                 .map(user -> modelMapper.map(user, UserDTO.class))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public UserDTO findById(int id) {
+        return modelMapper.
+                map(userRepository.findById(id)
+                        .orElseThrow(UserNotFoundException::new), UserDTO.class);
+
+
     }
 }
