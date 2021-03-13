@@ -1,6 +1,7 @@
 package com.example.ProducerMicroservice.controller;
 
 import com.example.ProducerMicroservice.model.dto.TaskDTO;
+import com.example.ProducerMicroservice.repository.TaskRepository;
 import com.example.ProducerMicroservice.service.TaskService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -15,8 +16,11 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:4200")
 public class TaskController {
 
-    @Autowired
     TaskService taskService;
+
+    public TaskController(TaskService taskService) {
+        this.taskService = taskService;
+    }
 
     @GetMapping
     @ApiOperation("Returns all tasks from database")
