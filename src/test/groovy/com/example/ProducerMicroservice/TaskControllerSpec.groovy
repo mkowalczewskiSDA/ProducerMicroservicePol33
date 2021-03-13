@@ -31,6 +31,13 @@ class TaskControllerSpec extends Specification {
     @Autowired
     MockMvc mockMvc
 
+    def task = new TaskDTO(1,"test1", true)
+    List<TaskDTO> taskList = [task,
+                                  new TaskDTO(2,"test2", false, 20, new UserDTO(2, "Jan", "Kowalski", "jk@wp.pl")),
+                                  new TaskDTO(3,"test3", false, 50, new UserDTO(1, "Stefan","Nowak", "sn@wp.pl"))
+                                  ]
+    ObjectMapper objectMapper = new ObjectMapper()
+
     def setup() {
         userService.create(new UserDTO("Stefan", "Nowak", "sn@wp.pl"))
         userService.create(new UserDTO("Jan", "Kowalski", "jk@wp.pl"))
@@ -40,21 +47,16 @@ class TaskControllerSpec extends Specification {
     }
 
     def "should return list of all Tasks"() {
-        given:
-        def task = new TaskDTO(1,"test1", true)
-        ObjectMapper objectMapper = new ObjectMapper();
         when:
         def result = mockMvc.perform(MockMvcRequestBuilders.get('/api/tasks')).andReturn()
         def values = objectMapper.readValue(result.getResponse().getContentAsString(), new TypeReference<List<TaskDTO>>() {})
         then:
-        values.get(0) == task
+        values == taskList
     }
 
     def "test"() {
-        when:
-        def test = 2+2
-        then:
-        test == 4
+
+
     }
 
 }
